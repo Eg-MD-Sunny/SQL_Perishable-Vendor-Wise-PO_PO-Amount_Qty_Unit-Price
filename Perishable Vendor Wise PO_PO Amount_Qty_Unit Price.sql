@@ -1,9 +1,13 @@
 
-select v.id VendorID,v.name Vendor,po.id PurchaseOrderID,
-pv.id ProductVariantID,pv.name ProductName,
-cast(dbo.tobdt(po.CompletedOn) as date) POPlacedDate,
-count(*) Quantity, t.CostPrice UnitCostPrice,
-sum(t.costprice) TotalCostPrice
+select v.id                                    [VendorID],
+       v.name                                  [Vendor],
+       po.id                                   [PurchaseOrderID],
+       pv.id                                   [ProductVariantID],
+       pv.name                                 [ProductName],
+       cast(dbo.tobdt(po.CompletedOn) as date) [POPlacedDate],
+       count(*)                                [Quantity], 
+       t.CostPrice                             [UnitCostPrice],
+       sum(t.costprice)                        [TotalCostPrice]
 
 from PurchaseOrder po
 join vendor v on po.VendorId=v.id
